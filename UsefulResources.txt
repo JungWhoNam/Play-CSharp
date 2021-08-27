@@ -1,0 +1,17 @@
+﻿Milestone
+* Install VS and review some basics  
+https://www.youtube.com/watch?v=GhQdlIFylQ8&ab_channel=freeCodeCamp.org
+* Advanced Topics in C#
+https://www.youtube.com/watch?v=jcn5uCZAk2w&list=PLLWMQd6PeGY12yNE714jffLFnMVZCwvvZ&ab_channel=IAmTimCorey
+
+Some Future Tutorials
+* Create a website with ASP.NET
+https://www.youtube.com/watch?v=BfEjDD8mWYg&list=RDCMUC8butISFwT-Wl7EV0hUK0BQ&index=2&ab_channel=freeCodeCamp.org
+* Create an application 
+https://www.youtube.com/watch?v=wfWxdh-_k_4&ab_channel=freeCodeCamp.org
+
+GIT
+* git clone into an existing folder
+https://stackoverflow.com/questions/5377960/git-whats-the-best-practice-to-git-clone-into-an-existing-folder
+* hard reset as single file
+https://stackoverflow.com/questions/7147270/hard-reset-of-a-single-file
