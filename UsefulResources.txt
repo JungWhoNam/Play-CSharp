@@ -3,6 +3,11 @@
 https://www.youtube.com/watch?v=GhQdlIFylQ8&ab_channel=freeCodeCamp.org
 * Advanced Topics in C#
 https://www.youtube.com/watch?v=jcn5uCZAk2w&list=PLLWMQd6PeGY12yNE714jffLFnMVZCwvvZ&ab_channel=IAmTimCorey
+- has so many good details (they are more than simple executions -  coding practices and thoughts behind)
+- but do not share the codes (unless you give an email)
+https://www.youtube.com/watch?v=bJZoZaiRpaU&list=PL4LFuHwItvKbneXxSutjeyz6i1w32K6di&index=37&ab_channel=GavinLon
+- more for executions
+- has github links
 
 Some Future Tutorials
 * Create a website with ASP.NET
