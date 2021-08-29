@@ -27,7 +27,8 @@ namespace LearningCSharp
             get { return hp; }
             set
             {
-                if (value < 0 || value > 100) hp = 0;
+                if (value < 0) hp = 0;
+                else if (value > 100) hp = 100;
                 else hp = value;
             }
         }
@@ -47,5 +48,11 @@ namespace LearningCSharp
             this.name = name;
         }
 
+        public static Character operator +(Character a, Character b)
+        {
+            Character c = new Character(a.name + " + " + b.name);
+            c.Hp = a.Hp + b.Hp;
+            return c;
+        }
     }
 }
