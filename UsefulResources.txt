@@ -20,3 +20,28 @@ GIT
 https://stackoverflow.com/questions/5377960/git-whats-the-best-practice-to-git-clone-into-an-existing-folder
 * hard reset as single file
 https://stackoverflow.com/questions/7147270/hard-reset-of-a-single-file
+
+
+LESSONS
+getter and setter protpery (a new feature in C#)
+
+const vs readonly keywords
+
+encapsulation (hide implementation details so you dont fuck it up)... could be done by 1) accessor and mutator methods, 2) a named property
+
+assembly vs namespace => physical code grouping vs logical code grouping
+http://net-informations.com/faq/framework/namespace-assembly.htm
+
+internal keyword  
+선언된 코드 그룹에서만 (같은 assembly or namespace) public 처럼 작동하고 다른 코드 그룹에서는 private 처럼 작동. 
+Heler 크래스 만드는데 종종 사용
+https://slaner.tistory.com/69
+
+?, ??, ??=, ?: operators
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator
+
+
+TODO
+value type vs reference type
+GC, Stack, Heap
+https://www.youtube.com/watch?v=NVKGxzuBe8c&list=PL4LFuHwItvKbneXxSutjeyz6i1w32K6di&index=16&ab_channel=GavinLon

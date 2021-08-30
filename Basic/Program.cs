@@ -55,6 +55,56 @@ namespace LearningCSharp
                 // so access them through the class name (instead through instance members)
                 Console.WriteLine("{0} is {1}", character.GetType().Name, Character.type);
             }
+
+
+            // ??= operator
+            // ? and ?? togather
+            // instead of assigning a value to the left operand, you can also throw an exception.
+            {
+                Character character = null;
+
+                //character = new Character("Tom");
+
+                //character ??= new Character();
+                // ??= is the same as the below.
+                //if (character == null) character = new Character();
+
+                character?.ShoutName();
+
+                Console.WriteLine("My name is {0}.", character?.name ?? "not defined");
+
+                try
+                {
+                    Console.WriteLine("My name is {0}.", character?.name ?? throw new ArgumentNullException(nameof(character), "cannot be null"));
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine("Error... {0}", e.Message);
+                }
+            }
+
+            // ?? operator
+            {
+                Character c0 = null;
+                Character c1 = new Character("tom");
+
+                // assigns c0 or c1 (that is not null) to character
+                // if both are not null, assigns c0 to character 
+                Character character = c0 ?? c1;
+                Console.WriteLine("My name is {0}.", character?.name);
+            }
+
+            // ?? operator is right-associative... a ?? b ?? c = a ?? (b ?? c)
+            {
+                Character c0 = new Character();
+                Character c1 = new Character("tom");
+                Character c2 = new Character("daisy");
+
+                // assigns c0, c1, c2 (that is not null) to character
+                // if all are not null, assigns c0 to character 
+                Character character = c0 ?? c1 ?? c2;
+                Console.WriteLine("My name is {0}.", character?.name);
+            }
         }
     }
 }

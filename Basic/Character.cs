@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-// getter and setter properties
-// const vs readonly keywords
 namespace LearningCSharp
 {
     class Character
@@ -53,6 +51,11 @@ namespace LearningCSharp
             Character c = new Character(a.name + " + " + b.name);
             c.Hp = a.Hp + b.Hp;
             return c;
+        }
+
+        public void ShoutName()
+        {
+            Console.WriteLine("Hey~ my name is {0}", this.name);
         }
     }
 }
