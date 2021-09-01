@@ -6,6 +6,8 @@ using static System.Console;
 // static and global modifiers
 // global modifier는 C# 10 부터 나온 기능
 // using alias
+
+// C# 투토리얼이 C# 8이상을 타겟으로 함
 namespace LearningCSharp.Explore
 {
     using s = System.String;
@@ -14,6 +16,8 @@ namespace LearningCSharp.Explore
     {
         static void Main(string[] args)
         {
+            WriteLine(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
+
             WriteLine(System.Math.PI);
 
             WriteLine(PI);
