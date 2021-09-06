@@ -43,7 +43,8 @@ https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null
 using Directive
 https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive
 
-
+delegate
+https://www.youtube.com/watch?v=eloA2E6xs28&ab_channel=%EB%A7%88%EC%88%98%EB%A6%AC
 
 
 
