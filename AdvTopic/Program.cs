@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //https://www.youtube.com/watch?v=YGZe06l9QwM&list=PLYMOUCVo86jGxzypthBW_6qMAO7GXzmCw&index=2&ab_channel=ProgrammingMadeEZ
-// 19:50
+// 30:50
 namespace LearningCSharp.AdvTopic
 {
     class Program
@@ -13,14 +9,14 @@ namespace LearningCSharp.AdvTopic
         static void Main(string[] args)
         {
             MathService service = new MathService();
-            service.OutboundDelegate = OnOutboundDelegate;
-            var result = service.MathDelegate(4.1, 2.0);
-            Console.WriteLine($"Result: {result}");
+            service.MathPerformed += OnOutboundEvent;
+            service.AddNumbers(2.0, 1.1);
+            service.MultiplyNumbers(2.0, 1.1);
         }
 
-        static void OnOutboundDelegate(double result)
+        static void OnOutboundEvent(object sender, MathPerformedEventArgs args)
         {
-            Console.WriteLine($"Outbound Result: {result}");
+            Console.WriteLine($"Outbound Result: {args.Result}");
         }
     }
 }
