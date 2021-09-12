@@ -1,41 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 // resources
-// https://afsdzvcx123.tistory.com/entry/C-%EB%AC%B8%EB%B2%95-C-LINQ-Take-TakeWhile-%EB%A9%94%EC%84%9C%EB%93%9C?category=784688
-
+// https://www.tutorialsteacher.com/linq/linq-grouping-operator-groupby-tolookup
 namespace LearningCSharp.Explore
 {
     class TestLINQ
     {
         static void Main(string[] args)
         {
-            List<Student> students = new List<Student>();
+            List<Student> students = GetDummyStudents();
+            // these LINQ extention methods work with array.
 
-            InitializeStudents(students);
+            // Use LINQ to find teenager students
+            Console.WriteLine("get teenagers");
+            List<Student> teenagers = students.Where(s => s.Age >= 12 && s.Age < 20).ToList<Student>();
+            teenagers.ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
 
-            foreach (var student in students)
+            Console.WriteLine("FirstOrDefault");
+            Student bill = students.Where(s => s.StudentName == "Bill").FirstOrDefault();
+            Console.WriteLine(bill);
+            Console.WriteLine();
+
+            Console.WriteLine("FirstOrDefault");
+            Student numberFive = students.Where(s => s.StudentID == 5).FirstOrDefault();
+            Console.WriteLine(numberFive);
+            Console.WriteLine();
+
+            Console.WriteLine("OrderBy");
+            students.
+                OrderBy(student => student.Age).
+                ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
+
+            Console.WriteLine("OrderBy");
+            students.
+                OrderByDescending(student => student.Age).
+                ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
+
+            Console.WriteLine("OrderBy, ThenBy");
+            students.
+                OrderBy(student => student.StudentName).
+                ThenBy(student => student.Age)
+                .ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
+
+            Console.WriteLine("OrderBy, ThenBy");
+            students.
+                OrderBy(student => student.StudentName).
+                ThenByDescending(student => student.Age)
+                .ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
+
+            Console.WriteLine("GroupBy");
+            var groups = students.GroupBy(student => student.Age);
+            foreach (var group in groups)
             {
-                Console.WriteLine($"name : {student.Name}  age : {student.Age}  grade : {student.Grade}");
+                Console.WriteLine($"age group: {group.Key}");
+                foreach (Student student in group) Console.WriteLine(student);
             }
+            Console.WriteLine();
+
+            Console.WriteLine("LookUp");
+            var groups2 = students.ToLookup(student => student.Age);
+            foreach (var group in groups2)
+            {
+                Console.WriteLine($"age group: {group.Key}");
+                foreach (Student student in group) Console.WriteLine(student);
+            }
+            Console.WriteLine();
+
         }
 
-        public static void InitializeStudents(List<Student> students)
+        static List<Student> GetDummyStudents()
         {
-            students.Add(new Student() { Name = "Tom", Age = 20, Grade = "A" });
-            students.Add(new Student() { Name = "Bob", Age = 30, Grade = "D" });
-            students.Add(new Student() { Name = "Lonnie", Age = 44, Grade = "A" });
-            students.Add(new Student() { Name = "John", Age = 12, Grade = "C" });
-            students.Add(new Student() { Name = "Julia", Age = 90, Grade = "B" });
-            students.Add(new Student() { Name = "Stephanie", Age = 33, Grade = "C" });
+            return new List<Student>() {
+                new Student() { StudentID = 1, StudentName = "John", Age = 18 } ,
+                new Student() { StudentID = 2, StudentName = "Steve",  Age = 15 } ,
+                new Student() { StudentID = 3, StudentName = "Bill",  Age = 25 } ,
+                new Student() { StudentID = 4, StudentName = "Ram" , Age = 20 } ,
+                new Student() { StudentID = 5, StudentName = "Ron" , Age = 19 },
+                new Student() { StudentID = 6, StudentName = "Ram" , Age = 18 }
+            };
         }
 
-        public class Student
+        class Student
         {
-            public string Name { get; set; }
+            public int StudentID { get; set; }
+            public String StudentName { get; set; }
             public int Age { get; set; }
-            public string Grade { get; set; }
+
+            public override string ToString()
+            {
+                return $"{StudentID} {StudentName} {Age}";
+            }
         }
     }
 }
