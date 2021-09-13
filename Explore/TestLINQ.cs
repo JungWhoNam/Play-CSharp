@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,6 +75,46 @@ namespace LearningCSharp.Explore
             }
             Console.WriteLine();
 
+            Console.WriteLine("Select");
+            var results = students.Select(student => new { 
+                Name = student.StudentName, 
+                Age = student.Age 
+            });
+            foreach (var result in results)
+            {
+                Console.WriteLine(result);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("All, Any");
+            Console.WriteLine(students.All(s => s.Age >= 12 && s.Age < 20));
+            Console.WriteLine(students.Any(s => s.Age >= 12 && s.Age < 20));
+            Console.WriteLine();
+
+            Console.WriteLine("Contain");
+            // it only compares reference of an object
+            Console.WriteLine(students.Contains(new Student() { StudentID = 3, StudentName = "Bill", Age = 25 }));
+            // in order to compare actual values of an object, need to implement IEqualityComparer.
+            Console.WriteLine(students.Contains(new Student() { StudentID = 3, StudentName = "Bill", Age = 25 }, new StudentComparer()));
+        }
+
+        class StudentComparer : IEqualityComparer<Student>
+        {
+            public bool Equals(Student x, Student y)
+            {
+                if (x.StudentID == y.StudentID &&
+                    x.Age == y.Age &&
+                    string.Equals(x.StudentName, y.StudentName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            public int GetHashCode(Student obj)
+            {
+                return obj.GetHashCode();
+            }
         }
 
         static List<Student> GetDummyStudents()
