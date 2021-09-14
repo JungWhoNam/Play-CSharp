@@ -15,6 +15,7 @@ namespace LearningCSharp.Explore
             List<Student> students = GetDummyStudents();
             // these LINQ extention methods work with array.
 
+
             // Use LINQ to find teenager students
             Console.WriteLine("get teenagers");
             List<Student> teenagers = students.Where(s => s.Age >= 12 && s.Age < 20).ToList<Student>();
@@ -76,11 +77,12 @@ namespace LearningCSharp.Explore
             Console.WriteLine();
 
             Console.WriteLine("Select");
-            var results = students.Select(student => new { 
-                Name = student.StudentName, 
-                Age = student.Age 
+            var resultsSelect = students.Select(student => new
+            {
+                Name = student.StudentName,
+                Age = student.Age
             });
-            foreach (var result in results)
+            foreach (var result in resultsSelect)
             {
                 Console.WriteLine(result);
             }
@@ -96,6 +98,93 @@ namespace LearningCSharp.Explore
             Console.WriteLine(students.Contains(new Student() { StudentID = 3, StudentName = "Bill", Age = 25 }));
             // in order to compare actual values of an object, need to implement IEqualityComparer.
             Console.WriteLine(students.Contains(new Student() { StudentID = 3, StudentName = "Bill", Age = 25 }, new StudentComparer()));
+            Console.WriteLine();
+
+            Console.WriteLine("Take");
+            // take 2 from the list
+            students.Take(2).ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine("TakeWhile");
+            // takes from the list until the specified condition is true...
+            // in this case, only returns a student, since there is 18-years old John placed in the first and Ram is on the last.
+            students.TakeWhile(student => student.Age == 18).ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
+
+            Console.WriteLine("Skip");
+            // take 2 from the list
+            students.Skip(2).ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine("SkipWhile");
+            // takes from the list until the specified condition is true...
+            // in this case, only returns a student, since there is 18-years old John placed in the first and Ram is on the last.
+            students.SkipWhile(student => student.Age < 20).ToList<Student>().ForEach(student => Console.WriteLine(student));
+            Console.WriteLine();
+
+
+            List<Student> students2 = new List<Student>() {
+                students[0],
+                new Student() { StudentID = 3, StudentName = "Bill",  Age = 25 } ,
+                new Student() { StudentID = 4, StudentName = "Ram" , Age = 20 } ,
+                new Student() { StudentID = 10, StudentName = "James" , Age = 30 } ,
+            };
+
+
+            Console.WriteLine("Intersect");
+            {
+                var results = students.Intersect(students2);
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+            Console.WriteLine("Intersect (with IEqualityComparer)");
+            {
+                var results = students.Intersect(students2, new StudentComparer());
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Except");
+            {
+                var results = students.Except(students2, new StudentComparer());
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Union, Distinct");
+            {
+                var results = students.Union(students2).Distinct(new StudentComparer());
+                foreach (var result in results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Sum, Max, Avg");
+            // get the sum of ages of people who are older than 21.
+            Console.WriteLine(students.Sum(s =>
+            {
+                if (s.Age > 21) return s.Age;
+                else return 0;
+            }));
+            // get the max age of people who are younger than 21.
+            Console.WriteLine(students.Max(s =>
+            {
+                if (s.Age < 21) return s.Age;
+                else return 0;
+            }));
+            // get the average age of "Ram"
+            Console.WriteLine(students.Average(s =>
+            {
+                if (s.StudentName.Equals("Ram")) return s.Age;
+                else return null;
+            }));
+            Console.WriteLine();
         }
 
         class StudentComparer : IEqualityComparer<Student>
@@ -113,7 +202,7 @@ namespace LearningCSharp.Explore
 
             public int GetHashCode(Student obj)
             {
-                return obj.GetHashCode();
+                return obj.StudentID.GetHashCode();
             }
         }
 
