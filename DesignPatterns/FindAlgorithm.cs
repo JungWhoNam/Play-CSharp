@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-// FindAlgorithm.cs B사에서 사용되고 있는 무비 서치 기능
+// B사에서 사용하는 서치 기능
 namespace LearningCSharp.DesignPatterns.Adapter
 {
-    interface FindAlgorithm
+    interface IFindAlgorithm
     {
         public void Find(Boolean global);
     }
 
-    class FindMovieAlgorithms : FindAlgorithm
+    class FindMovieAlgorithm : IFindAlgorithm
     {
         public void Find(bool global)
         {
