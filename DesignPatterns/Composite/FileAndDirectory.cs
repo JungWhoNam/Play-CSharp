@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-// https://jdm.kr/blog/228
-// 단일 객채이든 객체들의 집합이든 같은 방법으로 취급
-// 일부 또는 그룹을 표현하는 객체들을 트리 구조로 구성
-
 // TODO
 // for uniformity vs for type safety
 // https://mygumi.tistory.com/343 
