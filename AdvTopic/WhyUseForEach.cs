@@ -9,6 +9,16 @@ namespace LearningCSharp.AdvTopic
         static void Main(string[] args)
         {
             new List<string> { "Han", "John", "Harry" }.ForEach(name => Console.WriteLine(name));
+
+            int[,] doubleArray = new int[3, 2] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            foreach (int i in doubleArray)
+            {
+                Console.Write(i + ", ");
+            }
+            Console.WriteLine();
+
+            new List<List<int>> { new List<int> { 1, 2 }, new List<int> { 3, 4 }, new List<int> { 5, 6 } }.ForEach(item => item.ForEach(innerItem => Console.Write(innerItem + " ")));
+            Console.WriteLine();
         }
 
         //static void Main(string[] args)
