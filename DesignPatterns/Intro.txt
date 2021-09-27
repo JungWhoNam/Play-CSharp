@@ -13,3 +13,8 @@
 2.1. 어댑터 패턴
 
 3. 행위 패턴
+
+Design Patterns에 내용 업데이트
+- Adapter 패턴
+- Bridge 패턴
+- Composite 패턴
